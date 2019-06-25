@@ -4,7 +4,7 @@ import { PupilsModel } from "./PupilsModel";
 interface UpdateSchema { id?: string; room?: number; pupils?: []; }
 
 export class GroupsModel {
-    protected groupsBase: Map<any, any>;
+    protected groupsBase: Map<string, object>;
     constructor() {
         this.groupsBase = new Map();
     }
@@ -45,7 +45,7 @@ export class GroupsModel {
         return group.id;
     }
 
-    public async addPupil(groupId: string, pupil: AddSchema) {
+    public async addPupil(groupId: string, pupil: object) {
         if (!this.groupsBase.has(groupId)) {
             throw new Error("ID not found in base");
         }
@@ -67,8 +67,8 @@ export class GroupsModel {
 
         for (let i = 0; i < this.groupsBase.get(groupId).pupils.length; i++) {
             if (this.groupsBase.get(groupId).pupils[i].id === pupilId) {
-                let base = this.groupsBase.get(groupId).pupils;
-                let target = this.groupsBase.get(groupId).pupils.indexOf(this.groupsBase.get(groupId).pupils[i]);
+                const base = this.groupsBase.get(groupId).pupils;
+                const target = this.groupsBase.get(groupId).pupils.indexOf(this.groupsBase.get(groupId).pupils[i]);
                 return (base.splice(target, 1));
             }
         }

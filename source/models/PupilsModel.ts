@@ -1,4 +1,6 @@
+import {AddSchema} from "./interface";
 import { merge } from "./merge";
+import {UpdateSchema} from "./interface";
 
 export class PupilsModel {
     protected pupilBase: Map<any, any>;
@@ -6,7 +8,7 @@ export class PupilsModel {
         this.pupilBase = new Map();
 
     }
-    async update(key: string, obj: UpdateSchema) {
+    public async update(key: string, obj: UpdateSchema) {
         // validate(this.schema, obj, false);
 
         if (!this.pupilBase.has(key)) {

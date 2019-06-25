@@ -1,4 +1,6 @@
+import { AddSchemaTeacher } from "./interface";
 import { merge } from "./merge";
+import { UpdateSchemaTeacher } from "./interface";
 
 export class TeachersModel {
     protected teacherBase: Map<any, any>;

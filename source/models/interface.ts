@@ -1,6 +1,6 @@
 import { PupilsModel } from "./PupilsModel";
 
-interface AddSchema {
+export interface AddSchema {
     name: {
         first: string,
         last: string,
@@ -16,7 +16,7 @@ interface AddSchema {
     id?: string;
 }
 
-interface AddSchemaTeacher extends AddSchema {
+export interface AddSchemaTeacher extends AddSchema {
     emails: Array<{
         email: string,
         primary: boolean,
@@ -26,7 +26,7 @@ interface AddSchemaTeacher extends AddSchema {
     }>;
 }
 
-interface UpdateSchema {
+export interface UpdateSchema {
     dateOfBirth?: string;
     description?: string;
     image?: string;
@@ -41,7 +41,7 @@ interface UpdateSchema {
     sex?: string;
 }
 
-interface UpdateSchemaTeacher extends UpdateSchema {
+export interface UpdateSchemaTeacher extends UpdateSchema {
     emails?: Array<{
         email?: string,
         primary?: boolean,
@@ -51,4 +51,4 @@ interface UpdateSchemaTeacher extends UpdateSchema {
     }>;
 }
 
-interface RoomSchema { id: string; room: number; pupils: AddSchema[]; }
+export interface RoomSchema { id: string; room: number; pupils: AddSchema[]; }
