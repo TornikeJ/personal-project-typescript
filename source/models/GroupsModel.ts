@@ -4,8 +4,7 @@ import { PupilsModel } from "./PupilsModel";
 interface UpdateSchema { id?: string; room?: number; pupils?: []; }
 
 export class GroupsModel {
-    groupsBase: Map<any, any>;
-    schema: { id: string; room: number; pupils: any[]; };
+    protected groupsBase: Map<any, any>;
     constructor() {
         this.groupsBase = new Map();
     }
@@ -68,12 +67,16 @@ export class GroupsModel {
 
         for (let i = 0; i < this.groupsBase.get(groupId).pupils.length; i++) {
             if (this.groupsBase.get(groupId).pupils[i].id === pupilId) {
-                return (this.groupsBase.get(groupId).pupils.splice(this.groupsBase.get(groupId).pupils.indexOf(this.groupsBase.get(groupId).pupils[i]), 1));
+                let base = this.groupsBase.get(groupId).pupils;
+                let target = this.groupsBase.get(groupId).pupils.indexOf(this.groupsBase.get(groupId).pupils[i]);
+                return (base.splice(target, 1));
             }
         }
     }
 
     public async readAll() {
-        return [this.groupsBase.values()];
+        const values = this.groupsBase.values();
+
+        return [Array.from(values)];
     }
 }
