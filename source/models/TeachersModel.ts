@@ -3,7 +3,7 @@ import { merge } from "./merge";
 import { UpdateSchemaTeacher } from "./interface";
 
 export class TeachersModel {
-    protected teacherBase: Map<any, any>;
+    protected teacherBase: Map<string, object>;
     constructor() {
         this.teacherBase = new Map();
     }

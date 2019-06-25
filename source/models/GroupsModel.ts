@@ -1,10 +1,11 @@
 import { merge } from "./merge";
 import { PupilsModel } from "./PupilsModel";
+import { RoomSchema, AddSchema } from "./interface";
 
-interface UpdateSchema { id?: string; room?: number; pupils?: []; }
+interface UpdateSchema { id?: string; room?: number; pupils?: PupilsModel[]; }
 
 export class GroupsModel {
-    protected groupsBase: Map<string, object>;
+    protected groupsBase: Map<string, RoomSchema>;
     constructor() {
         this.groupsBase = new Map();
     }
@@ -24,32 +25,47 @@ export class GroupsModel {
     public async add(room: number) {
 
         const id = (Math.floor(Math.random() * 1000) + 1).toString();
-        let group = Object.create(Object.prototype, {
-            id: {
-                enumerable: true,
-                value: id,
-            },
-            pupils: {
-                enumerable: true,
-                value: [],
-                writable: true,
-            },
-            room: {
-                enumerable: true,
-                value: room,
-                writable: true,
-            },
-        });
+        // let group = Object.create(Object.prototype, {
+        //     id: {
+        //         enumerable: true,
+        //         value: id,
+        //     },
+        //     pupils: {
+        //         enumerable: true,
+        //         Value: Array<PupilsModel>{},
+        //         writable: true,
+        //     },
+        //     room: {
+        //         enumerable: true,
+        //         value: room,
+        //         writable: true,
+        //     },
+        // });
+        const pupils: [] = [];
 
+        let group: RoomSchema = {
+            id,
+            pupils,
+            room
+        };
         this.groupsBase.set(id, group);
         return group.id;
     }
 
-    public async addPupil(groupId: string, pupil: object) {
+    public async addPupil(groupId: string, pupil: AddSchema) {
         if (!this.groupsBase.has(groupId)) {
             throw new Error("ID not found in base");
         }
 
+        if(!this.groupsBase)
+        {
+            throw new Error('error');
+        }
+        if(this.groupsBase.get(groupId))
+        {
+            throw new Error('error');
+        }
+        
         return this.groupsBase.get(groupId).pupils.push(pupil);
     }
 

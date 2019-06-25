@@ -3,7 +3,7 @@ import { merge } from "./merge";
 import {UpdateSchema} from "./interface";
 
 export class PupilsModel {
-    protected pupilBase: Map<any, any>;
+    protected pupilBase: Map<string, object>;
     constructor() {
         this.pupilBase = new Map();
 
