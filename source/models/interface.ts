@@ -1,3 +1,5 @@
+import { PupilsModel } from "./PupilsModel";
+
 interface AddSchema {
     name: {
         first: string,
@@ -7,7 +9,7 @@ interface AddSchema {
     dateOfBirth: string;
     phones: Array<{
         phone: string,
-        primary: boolean
+        primary: boolean,
     }>;
     sex: string;
     description?: string;
@@ -49,4 +51,4 @@ interface UpdateSchemaTeacher extends UpdateSchema {
     }>;
 }
 
-interface RoomSchema { id: string; room: number; pupils: []; }
+interface RoomSchema { id: string; room: number; pupils: AddSchema[]; }
